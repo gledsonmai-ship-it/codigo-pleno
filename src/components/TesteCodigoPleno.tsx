@@ -1,17 +1,11 @@
-import { salvarResultadoCliente } from '../utils/salvarResultado';
-import { auth } from '../firebaseConfig';
+// src/components/TesteCodigoPleno.tsx
+import React from 'react';
 
-const handleSalvar = async () => {
-  const user = auth.currentUser;
-  if (!user) return;
-
-  await salvarResultadoCliente({
-    nome: nomeCliente,
-    temperamento: dominanteTemperamento,
-    secundario: secundarioTemperamento,
-    perfilDISC: dominanteDISC,
-    pontuacoes: resultadoDISC,
-    pdi: pdi[dominanteDISC],
-    analistaId: user.uid,
-  });
-};
+export default function TesteCodigoPleno() {
+  return (
+    <div>
+      <h2>Teste Código Pleno</h2>
+      <p>Este é um componente de teste funcional.</p>
+    </div>
+  );
+}
