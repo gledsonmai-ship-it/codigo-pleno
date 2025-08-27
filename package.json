@@ -1,10 +1,10 @@
 {
-  "name": "meu-projeto-novo",
+  "name": "codigo-pleno-assessment",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "CI='' vite build",
     "preview": "vite preview"
   },
   "dependencies": {
