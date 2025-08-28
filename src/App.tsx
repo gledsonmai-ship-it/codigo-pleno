@@ -1,46 +1,38 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebaseConfig';
-
-import Institucional from './components/Institucional';
-import LoginAnalista from './components/LoginAnalista';
-import PainelAnalista from './components/PainelAnalista';
-import TesteTemperamento from './components/TesteTemperamento';
-import TesteCodigoPleno from './components/TesteCodigoPleno';
-
-import type { User } from 'firebase/auth';
-const [usuario, setUsuario] = useState<User | null>(null);
-
-  useEffect(() => {
-    const escutar = onAuthStateChanged(auth, (user) => {
-      setUsuario(user);
-    });
-    return () => escutar();
-  }, []);
-
-  return (
-    <Router>
-      <nav style={{ padding: '1rem', background: '#f0f0f0' }}>
-        <Link to="/" style={{ marginRight: '1rem' }}>Institucional</Link>
-        <Link to="/login" style={{ marginRight: '1rem' }}>Login</Link>
-        <Link to="/painel" style={{ marginRight: '1rem' }}>Painel</Link>
-        <Link to="/teste/temperamento">Teste</Link>
+return (
+  <Router>
+    <header style={{ background: 'var(--cor-primaria)', padding: '1rem' }}>
+      <h1 style={{ color: 'white', margin: 0 }}>Código Pleno</h1>
+      <nav style={{ marginTop: '0.5rem' }}>
+        <NavLink to="/" style={({ isActive }) => ({
+          color: isActive ? 'var(--cor-destaque)' : 'white',
+          marginRight: '1rem',
+          textDecoration: 'none',
+          fontWeight: 'bold'
+        })}>Institucional</NavLink>
+        <NavLink to="/login" style={({ isActive }) => ({
+          color: isActive ? 'var(--cor-destaque)' : 'white',
+          marginRight: '1rem',
+          textDecoration: 'none',
+          fontWeight: 'bold'
+        })}>Login</NavLink>
+        <NavLink to="/painel" style={({ isActive }) => ({
+          color: isActive ? 'var(--cor-destaque)' : 'white',
+          marginRight: '1rem',
+          textDecoration: 'none',
+          fontWeight: 'bold'
+        })}>Painel</NavLink>
+        <NavLink to="/descoberta/temperamento" style={({ isActive }) => ({
+          color: isActive ? 'var(--cor-destaque)' : 'white',
+          textDecoration: 'none',
+          fontWeight: 'bold'
+        })}>Descoberta</NavLink>
       </nav>
+    </header>
 
+    <main style={{ padding: '2rem' }}>
       <Routes>
-        <Route path="/" element={<Institucional />} />
-        <Route path="/login" element={<LoginAnalista />} />
-        <Route path="/painel" element={usuario ? <PainelAnalista /> : <LoginAnalista />} />
-        <Route path="/teste/:slug" element={
-          <>
-            <TesteTemperamento />
-            <TesteCodigoPleno />
-          </>
-        } />
+        {/* suas rotas aqui */}
       </Routes>
-    </Router>
-  );
-}
-
-export default App;
+    </main>
+  </Router>
+);
