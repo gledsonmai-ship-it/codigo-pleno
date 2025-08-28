@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "./firebaseConfig";
@@ -21,19 +21,17 @@ function App() {
 
   return (
     <Router>
-      <header className="bg-slate-800">
-        <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-          <h1 className="text-white text-xl font-semibold tracking-wide">Código Pleno</h1>
-          <nav className="flex gap-4">
-            <NavItem to="/" label="Institucional" />
-            <NavItem to="/login" label="Login" />
-            <NavItem to="/painel" label="Painel" />
-            <NavItem to="/descoberta/temperamento" label="Descoberta" />
-          </nav>
-        </div>
+      <header style={{ background: "#2c3e50", padding: "1rem" }}>
+        <h1 style={{ color: "white", margin: 0 }}>Código Pleno</h1>
+        <nav style={{ marginTop: "0.5rem" }}>
+          <NavLink to="/" style={linkStyle}>Institucional</NavLink>
+          <NavLink to="/login" style={linkStyle}>Login</NavLink>
+          <NavLink to="/painel" style={linkStyle}>Painel</NavLink>
+          <NavLink to="/descoberta/temperamento" style={linkStyle}>Descoberta</NavLink>
+        </nav>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 py-8">
+      <main style={{ padding: "2rem" }}>
         <Routes>
           <Route path="/" element={<Institucional />} />
           <Route path="/login" element={<LoginAnalista />} />
@@ -54,20 +52,11 @@ function App() {
   );
 }
 
-function NavItem({ to, label }: { to: string; label: string }) {
-  return (
-    <NavLink
-      to={to}
-      className={({ isActive }) =>
-        [
-          "text-sm font-semibold transition-colors",
-          isActive ? "text-amber-400" : "text-white hover:text-amber-300",
-        ].join(" ")
-      }
-    >
-      {label}
-    </NavLink>
-  );
-}
+const linkStyle = ({ isActive }: { isActive: boolean }) => ({
+  color: isActive ? "#f39c12" : "white",
+  marginRight: "1rem",
+  textDecoration: "none",
+  fontWeight: "bold",
+});
 
 export default App;
