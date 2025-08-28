@@ -1,14 +1,28 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { app } from '../firebaseConfig';
 
-const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_ID,
+const db = getFirestore(app);
+
+export const salvarDescoberta = async (dados: {
+  nome: string;
+  perfil: string;
+  data: string;
+}) => {
+  try {
+    await addDoc(collection(db, 'descobertas'), dados);
+    console.log('Descoberta salva com sucesso!');
+  } catch (erro) {
+    console.error('Erro ao salvar descoberta:', erro);
+  }
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const buscarDescobertas = async () => {
+  try {
+    const snapshot = await getDocs(collection(db, 'descobertas'));
+    const lista = snapshot.docs.map((doc) => doc.data());
+    return lista;
+  } catch (erro) {
+    console.error('Erro ao buscar descobertas:', erro);
+    return [];
+  }
+};
