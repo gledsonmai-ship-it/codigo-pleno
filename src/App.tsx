@@ -26,29 +26,49 @@ function App() {
       <header style={{ background: 'var(--cor-primaria)', padding: '1rem' }}>
         <h1 style={{ color: 'white', margin: 0 }}>Código Pleno</h1>
         <nav style={{ marginTop: '0.5rem' }}>
-          <NavLink to="/" style={({ isActive }) => ({
-            color: isActive ? 'var(--cor-destaque)' : 'white',
-            marginRight: '1rem',
-            textDecoration: 'none',
-            fontWeight: 'bold'
-          })}>Institucional</NavLink>
-          <NavLink to="/login" style={({ isActive }) => ({
-            color: isActive ? 'var(--cor-destaque)' : 'white',
-            marginRight: '1rem',
-            textDecoration: 'none',
-            fontWeight: 'bold'
-          })}>Login</NavLink>
-          <NavLink to="/painel" style={({ isActive }) => ({
-            color: isActive ? 'var(--cor-destaque)' : 'white',
-            marginRight: '1rem',
-            textDecoration: 'none',
-            fontWeight: 'bold'
-          })}>Painel</NavLink>
-          <NavLink to="/descoberta/temperamento" style={({ isActive }) => ({
-            color: isActive ? 'var(--cor-destaque)' : 'white',
-            textDecoration: 'none',
-            fontWeight: 'bold'
-          })}>Descoberta</NavLink>
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              color: isActive ? 'var(--cor-destaque)' : 'white',
+              marginRight: '1rem',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+            })}
+          >
+            Institucional
+          </NavLink>
+          <NavLink
+            to="/login"
+            style={({ isActive }) => ({
+              color: isActive ? 'var(--cor-destaque)' : 'white',
+              marginRight: '1rem',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+            })}
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/painel"
+            style={({ isActive }) => ({
+              color: isActive ? 'var(--cor-destaque)' : 'white',
+              marginRight: '1rem',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+            })}
+          >
+            Painel
+          </NavLink>
+          <NavLink
+            to="/descoberta/temperamento"
+            style={({ isActive }) => ({
+              color: isActive ? 'var(--cor-destaque)' : 'white',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+            })}
+          >
+            Descoberta
+          </NavLink>
         </nav>
       </header>
 
@@ -56,11 +76,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Institucional />} />
           <Route path="/login" element={<LoginAnalista />} />
-          <Route path="/painel" element={
-            <RotaProtegida>
-              <PainelAnalista />
-            </RotaProtegida>
-          } />
+          <Route
+            path="/painel"
+            element={
+              <RotaProtegida>
+                <PainelAnalista />
+              </RotaProtegida>
+            }
+          />
           <Route path="/descoberta/temperamento" element={<IntroducaoDescoberta />} />
           <Route path="/descoberta/temperamento/iniciar" element={<DescobertaTemperamento />} />
           <Route path="/descoberta/temperamento/final" element={<FinalizacaoDescoberta />} />
