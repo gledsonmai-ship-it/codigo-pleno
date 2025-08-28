@@ -9,8 +9,8 @@ import PainelAnalista from './components/PainelAnalista';
 import TesteTemperamento from './components/TesteTemperamento';
 import TesteCodigoPleno from './components/TesteCodigoPleno';
 
-function App() {
-  const [usuario, setUsuario] = useState(null);
+import type { User } from 'firebase/auth';
+const [usuario, setUsuario] = useState<User | null>(null);
 
   useEffect(() => {
     const escutar = onAuthStateChanged(auth, (user) => {
