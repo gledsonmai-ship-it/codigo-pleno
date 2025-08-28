@@ -1,6 +1,3 @@
-node_modules/
-dist/
+﻿node_modules
+dist
 .env
-.vite/
-.DS_Store
-*.log
